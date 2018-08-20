@@ -23,9 +23,9 @@
         </div>
 
         <!-- Choose a hero -->
-        <div class='row' id='heroChooser1'>
+        <div class='row'>
             <div class='col-12'>
-                <h3>Choose A Hero!</h3>
+                <h3 id='heroChooser1'>Choose A Hero!</h3>
             </div>
         </div>
 
@@ -34,7 +34,7 @@
             <!-- Columns for the heroes -->
             <div class='col-6 col-md-3'>
                 <div class='hero-box'>
-                    <div class="card mx-auto" id='nim'  style="width: 15rem;">
+                    <div class="card mx-auto hero-card" id='nim'  style="width: 15rem;">
                         <img class="card-img-top" src="assets/images/nim1.jpg" alt="Pink haired gnome">
                         <div class="card-body">
                             <h5 class="card-title">Nim of Clan Turenn</h5>
@@ -90,14 +90,14 @@
         </div>
 
         <!-- Row for the Fight!/You Win!/You Lose! box -->
-        <div class='row' id="marquee">
+        <div class='row invis' id="marquee">
             <div class='col-12'>
                 <h2>Fight!</h2>
             </div>
         </div>
 
         <!-- Row for the PC vs NPC cards -->
-        <div class='row' id='fightBox'>
+        <div class='row invis' id='fightBox'>
             <!-- Col for PC -->
             <div class='col-6 col-md-5 jumbotron' id='pcBox'>
                 
@@ -105,18 +105,18 @@
             </div>
             <!-- Col for 'vs' -->
             <div class='col-2'>
-                <h3>vs</h3>
+                <h3 class='mt-4'>vs</h3>
 
             </div>
             <!-- Col for NPC -->
             <div class='col-6 col-md-5 jumbotron' id='npcBox'>
-                bill
+                
 
             </div>
         </div>
 
         <!-- Row for attack button and attack box -->
-        <div class='row'>
+        <div class='row invis' id='fightBox2'>
             <!-- Col for Attack/special button -->
             <div class='col-6 col-md-4'>
                 <button class='btn btn-primary' id='atkBtn'>Attack!</button>
@@ -124,7 +124,7 @@
             </div>            
             <!-- Col for attack text box -->
             <div class='col-12 col-md-8'>
-                <p id='attackText' class='attack-text'></p>
+                <p id='attackText' class='bg-secondary atk-text-box'></p>
 
             </div>
         </div>

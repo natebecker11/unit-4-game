@@ -11,3 +11,23 @@ body {
 .invis {
     display: none;
 }
+
+
+
+/* Decreased opacity */
+.transp {
+    opacity: .3;
+}
+
+
+
+/* Size of attack text and font color */
+.atk-text-box {
+    min-height: 1.5rem;
+    min-width: 18rem;
+    color: white;
+    text-align: left;
+    border: 2px solid darkslategray;
+}
+
+
