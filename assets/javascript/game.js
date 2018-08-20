@@ -1,10 +1,3 @@
-// $('#ulfgar').on('click', function(){
-//     $('#ulfgar').clone().appendTo('#pcBox');
-//     $('#ulfgar').empty();
-// })
-
-
-
 // Global variables
 
     // PC HP, Atk, Atk increase modifier and Name
@@ -32,7 +25,7 @@ var heroes = [
         id: 'ulfgar',
         hp: 160,
         atk: 8,
-        counter: 20,
+        counter: 12,
         hardCtr: 30
 
     },
@@ -40,8 +33,8 @@ var heroes = [
         name: 'Nim of Clan Turenn',
         id: 'nim',
         hp: 100,
-        atk: 14,
-        counter: 30,
+        atk: 13,
+        counter: 19,
         hardCtr: 42
 
     },
@@ -50,7 +43,7 @@ var heroes = [
         id: 'ardic',
         hp: 140,
         atk: 10,
-        counter: 24,
+        counter: 15,
         hardCtr: 35
 
     },
@@ -58,8 +51,8 @@ var heroes = [
         name: 'Eo of Slopbucket',
         id: 'eo',
         hp: 120,
-        atk: 12,
-        counter: 26,
+        atk: 11,
+        counter: 17,
         hardCtr: 38
 
     }
@@ -89,24 +82,36 @@ var toggleFight = function() {
 
 // function roundWinner to move to the next round, or trigger the winner screen
 var roundWinner = function() {
+    // Clear the damage text display
+    $('#attackText').text('');
     // Increase the number of rounds won
     roundsWon++
     // Check to see if roundsWon is 3
     if (roundsWon === 3) {
         // Declare a winner
         gameWinner();
+    }
+    // Check if PC died while defeating last opponent
+    else if (pcHitPoints <= 0) {
+        gameLoser();
+    }
     // Otherwise, bring up the choose opponent screen
-    } else toggleChoose();
+     else {
+        alert(pcName + ' defeated ' + npcName + '! Choose your next opponent!')
+        toggleChoose();
+    }
 }
 
 // function gameWinner to declare a winner and reset 
 var gameWinner = function() {
-    console.log('under construction')
+    alert(pcName + ' has emerged as the baddest member of the Dark Vision Crew! Press OK to play again!');
+    location.reload();
 }
 
 // function gameLoser to declare a loser and reset
 var gameLoser = function() {
-    console.log('under construction')
+    alert('Oh no, you have lost! Press OK to play again!');
+    location.reload();
 }
 
 // Function to log the damage dealt each attack
@@ -123,12 +128,12 @@ $('document').ready(function() {
     $('.hero-box').on('click', '.hero-card', function(){
         //Check to see if a hero has already been chosen, and if not
         if (heroChosen === false) {
-            // Grab the id of the hero
+            // Grab the element of the hero
             var heroClicked = this;
             // Send that hero to the PC Box and remove it from the Hero box
             
             $(this).clone().appendTo('#pcBox');
-            $(this).empty();
+            $(this).addClass('invis');
             // Iterate through the heroes array looking for the one with a matching id
             var heroObj = heroes.find(function(element) {
                 return element.id == heroClicked.id;
@@ -143,46 +148,46 @@ $('document').ready(function() {
             // set heroChosen = true so the next click is picking an opponent
             heroChosen = true;
             
-        }        
+        }
+        
+        else {
+            // Grab the element of the hero
+            var heroClicked = this;
+            // Send that hero to the NPC box and hide it in the Hero box
+            $(this).clone().appendTo('#npcBox');
+            $(this).addClass('invis');
+            // Iterate through the heroes array looking for the matching ID
+            var heroObj = heroes.find(function(element) {
+                return element.id == heroClicked.id;
+            })
+            // Store the Counter-Atk, HP, and Name of the object
+            npcHitPoints = heroObj.hp;
+            npcCounter = heroObj.counter;
+            npcName = heroObj.name;
+            // Change the sub-header to say 'Choose your next opponent!'
+            $('#heroChooser1').text('Choose Your Next Opponent!');
+            // Toggle the fight screen
+            toggleFight();
+        }
     })
-
-
-        
-
-            // Grab the ID of the clicked hero, then iterate through the array of hero objects
-
-            // If the id matches, send that to the PC box #pcBox, remove that hero from the hero box (id heroChooser2)
-
-            // Set the hp and atk of that object to PC hp and PC atk, also atk->mod pcHitPoints pcAttack pcAttackMod pc name to pcName
-
-            // Change #heroChooser1 to say 'Choose your opponent!'
-
-            // set heroChosen = true
-
-        // Else: (now they are choosing opponent)
-
-            // Change #heroChooser1 to say 'Choose your next opponent!'
-
-            // Empty the NPC box  #npcBox
-        
-            // Grab the ID of the clicked hero, send that to the NPC box #npcBox, remove that hero from the hero box (id heroChooser2)
-
-            // Iterate through the heroes array, if the id matches, set hp and counter and npcName
-
-            // Hide #heroChooser1 and #heroChooser2
-
-            // show #marquee and #fightBox
-
-
-
             
     // When the attack button #atkBtn is clicked
-
-            // Decrement npcHitPoints by pcAttack and pcHitPoints by npcCounter
-            // run logDamage function 
-            // pcAttack = pcAttack + pcAttackMod
-            // If npcHitPoints <= 0, run roundWinner function
-            // else if pcHitPoints <=0, run gameLoser function
+    $('#atkBtn').on('click', function() {
+            // Decrement PC HP by NPC attack and vice versa
+            npcHitPoints -= pcAttack;
+            pcHitPoints -= npcCounter;            
+            // Display HP for NPC and PC and change font style
+            $('#npcBox').find('.hp-box').addClass('text-danger font-weight-bold').removeClass('text-muted').text(npcHitPoints + ' HP');
+            $('#pcBox').find('.hp-box').addClass('text-danger font-weight-bold').removeClass('text-muted').text(pcHitPoints + ' HP');
+            // Display damage dealt 
+            logDamage(pcAttack, npcCounter);
+            // Scale PC damage up for next attack
+            pcAttack = pcAttack + pcAttackMod;
+            // If NPC is dead, bring on the next opponent
+            if (npcHitPoints <= 0) roundWinner();
+            // Else if PC is dead, game over
+            else if (pcHitPoints <= 0) gameLoser();
+    });
 
 
 });

@@ -30,4 +30,7 @@ body {
     border: 2px solid darkslategray;
 }
 
-
+/* Highlight on hover effect for heroes */
+.hero-card:hover {
+    border: 1px solid red;
+}
