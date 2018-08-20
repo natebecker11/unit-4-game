@@ -1,3 +1,13 @@
 body {
     font-family: 'Playfair Display', serif;
 }
+
+
+
+
+
+
+/* Invisibility */
+.invis {
+    display: none;
+}

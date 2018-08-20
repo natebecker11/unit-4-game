@@ -6,14 +6,14 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>RPG Game</title>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
-    <link rel='stylesheet' type='text/css' href='/assets/css/style.css'>
+    <link rel='stylesheet' type='text/css' href='assets/css/style.css'>
     <link href="https://fonts.googleapis.com/css?family=Playfair+Display" rel="stylesheet">
 
 </head>
 <body>
 
     <!-- Container for whole game -->
-    <div class='container'>
+    <div class='container text-center'>
 
         <!-- Header for game title -->
         <div class='row'>
@@ -23,64 +23,108 @@
         </div>
 
         <!-- Choose a hero -->
-        <div class='row'>
+        <div class='row' id='heroChooser1'>
             <div class='col-12'>
                 <h3>Choose A Hero!</h3>
             </div>
         </div>
 
         <!-- Row for hero choices -->
-        <div class='row'>
+        <div class='row' id='heroChooser2'>
             <!-- Columns for the heroes -->
             <div class='col-6 col-md-3'>
+                <div class='hero-box'>
+                    <div class="card mx-auto" id='nim'  style="width: 15rem;">
+                        <img class="card-img-top" src="assets/images/nim1.jpg" alt="Pink haired gnome">
+                        <div class="card-body">
+                            <h5 class="card-title">Nim of Clan Turenn</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Gnomish Druid</h6>
+                            <p class="card-text">Nim may be small, but makes up for it with ferocious attacks and the natural magic of the woods.</p>
+                            <p class='card-text text-muted hp-box'>100 HP</p>
+                        </div>
+                    </div>
+                </div>
 
             </div>
             <div class='col-6 col-md-3'>
+                <div class='hero-box'>
+                    <div class="card mx-auto" id='ardic' style="width: 15rem;">
+                        <img class="card-img-top" src="assets/images/ardic.png" alt="Ravishingly handsome half-elf">
+                        <div class="card-body">
+                            <h5 class="card-title">Ardic Arbandale</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Half-Elf Warlock</h6>
+                            <p class="card-text">After nearly falling in battle, Ardic struck a dark bargain to learn the Eldritch spells he uses against his foes.</p>
+                            <p class='card-text text-muted hp-box'>140 HP</p>
+                        </div>
+                    </div>
+                </div>
                 
             </div>
             <div class='col-6 col-md-3'>
+                <div class='hero-box'>                    
+                    <div class="card mx-auto" id='eo'style="width: 15rem;">
+                        <img class="card-img-top" src="assets/images/eo.jpg" alt="Light-skinned human rogue">
+                        <div class="card-body">
+                            <h5 class="card-title">Eo of Slopbucket</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Half-Elf Rogue</h6>
+                            <p class="card-text">A childhood spent in the slums taught Eo how to hide in the shadows and strike when no one is looking.</p>
+                            <p class='card-text text-muted hp-box'>120 HP</p>
+                        </div>
+                    </div>                                       
+                </div>
                 
             </div>
             <div class='col-6 col-md-3'>
-                
+                <div class='hero-box'>                    
+                    <div class="card mx-auto" id='ulfgar' style="width: 15rem;">
+                        <img class="card-img-top" src="assets/images/ulfgar.jpg" alt="Imposing dwarf barbarian">
+                        <div class="card-body">
+                            <h5 class="card-title">Ulfgar Frostbeard</h5>
+                            <h6 class="card-subtitle mb-2 text-muted">Dwarf Barbarian</h6>
+                            <p class="card-text">Avenging the fall of his mountain home, Ulfgar's undying rage keeps him on his feet when others would be long gone.</p>
+                            <p class='card-text text-muted hp-box'>160 HP</p>
+                        </div>
+                    </div>                    
+                </div>                
             </div>
         </div>
 
         <!-- Row for the Fight!/You Win!/You Lose! box -->
-        <div class='row'>
+        <div class='row' id="marquee">
             <div class='col-12'>
                 <h2>Fight!</h2>
             </div>
         </div>
 
         <!-- Row for the PC vs NPC cards -->
-        <div class='row'>
+        <div class='row' id='fightBox'>
             <!-- Col for PC -->
-            <div class='col-6 col-md-5'>
+            <div class='col-6 col-md-5 jumbotron' id='pcBox'>
+                
 
             </div>
             <!-- Col for 'vs' -->
             <div class='col-2'>
+                <h3>vs</h3>
 
             </div>
             <!-- Col for NPC -->
-            <div class='col-6 col-md-5'>
+            <div class='col-6 col-md-5 jumbotron' id='npcBox'>
+                bill
 
             </div>
         </div>
 
         <!-- Row for attack button and attack box -->
         <div class='row'>
-            <!-- Col for Attack button -->
-            <div class='col-6 col-md-2'>
-
-            </div>
-            <!-- Col for special power button -->
-            <div class='col-6 col-md-2'>
-
-            </div>
+            <!-- Col for Attack/special button -->
+            <div class='col-6 col-md-4'>
+                <button class='btn btn-primary' id='atkBtn'>Attack!</button>
+                <button class='btn btn-danger invis' id='spcBtn'>Special!</button>
+            </div>            
             <!-- Col for attack text box -->
             <div class='col-12 col-md-8'>
+                <p id='attackText' class='attack-text'></p>
 
             </div>
         </div>
