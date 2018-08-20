@@ -23,8 +23,8 @@ body {
 
 /* Size of attack text and font color */
 .atk-text-box {
-    min-height: 1.5rem;
-    min-width: 18rem;
+    min-height: 18rem;
+    min-width: 4.5rem;
     color: white;
     text-align: left;
     border: 2px solid darkslategray;
