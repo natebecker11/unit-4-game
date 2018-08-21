@@ -12,7 +12,7 @@ Once core features are complete, I hope to integrate the following features.
 
 ### Special Powers
 - [ ] Each character has a single, one-time-use special ability that is unique to them, and only usable if the player selects them as a PC. These might be a one-time damage boost, a temporary shield from damage, a permanent reduction in an opponent's damage, etc.
-[ ] If this is included, it would be offered to the player as part of a special 'hard mode' of the game.
+- [ ] If this is included, it would be offered to the player as part of a special 'hard mode' of the game.
 
 ### Create a character
 - [ ] The player would be able to create a character of their own instead of using only the pre-made characters.
