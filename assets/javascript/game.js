@@ -132,8 +132,9 @@ $('document').ready(function() {
             var heroClicked = this;
             // Send that hero to the PC Box and remove it from the Hero box
             
-            $(this).clone().appendTo('#pcBox');
+            $(this).clone().removeClass('hero-pre').appendTo('#pcBox');
             $(this).addClass('invis');
+
             // Iterate through the heroes array looking for the one with a matching id
             var heroObj = heroes.find(function(element) {
                 return element.id == heroClicked.id;
@@ -154,7 +155,7 @@ $('document').ready(function() {
             // Grab the element of the hero
             var heroClicked = this;
             // Send that hero to the NPC box and hide it in the Hero box
-            $(this).clone().appendTo('#npcBox');
+            $(this).clone().removeClass('hero-pre').appendTo('#npcBox');
             $(this).addClass('invis');
             // Iterate through the heroes array looking for the matching ID
             var heroObj = heroes.find(function(element) {

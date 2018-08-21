@@ -30,7 +30,14 @@ body {
     border: 2px solid darkslategray;
 }
 
+/* Reduced opacity on non-hovered heroes */
+.hero-pre {
+    opacity: .7;
+}
+
 /* Highlight on hover effect for heroes */
-.hero-card:hover {
-    border: 1px solid red;
+.hero-pre:hover {
+    opacity: 1;
+    border: 1px solid black;
+    border-style: round;
 }
