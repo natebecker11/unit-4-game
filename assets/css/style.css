@@ -41,3 +41,8 @@ body {
     border: 1px solid black;
     border-style: round;
 }
+
+/* Hide an element but keep it taking space */
+.temp-hide {
+    visibility: hidden;
+}

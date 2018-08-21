@@ -98,6 +98,7 @@ var roundWinner = function() {
     // Otherwise, show the next opponent button, log congrats text to the textbox
      else {
         $('#nextBtn').removeClass('invis');
+        $('#atkBtn').addClass('temp-hide');
         $('#attackText').text(`${pcName} finished off ${npcName}!!! Another opponent awaits!`)
     }
 }
@@ -106,14 +107,19 @@ var roundWinner = function() {
 
 // function gameWinner to declare a winner and reset 
 var gameWinner = function() {
-    alert(pcName + ' has emerged as the baddest member of the Dark Vision Crew! Press OK to play again!');
-    location.reload();
+    $('#attackText').text(`${pcName} has defeated all and reigns supreme!!`)
+    $('#atkBtn').addClass('temp-hide');
+    $('#refreshBtn').removeClass('invis');
+    $('.hp-box').addClass('temp-hide');
+    $('#vsBox').text('WINNER!!!');
 }
 
 // function gameLoser to declare a loser and reset
 var gameLoser = function() {
-    alert('Oh no, you have lost! Press OK to play again!');
-    location.reload();
+    $('#attackText').text(`${pcName} has fallen! Better luck next time!`)
+    $('#atkBtn').addClass('temp-hide'); 
+    $('#refreshBtn').removeClass('invis');
+    $('#vsBox').text('LOSER!!!');
 }
 
 // Function to log the damage dealt each attack
@@ -195,10 +201,20 @@ $('document').ready(function() {
 
     // When the next button is clicked #nextBtn
     $('#nextBtn').on('click', function() {
-        //ToggleChoose
+        // Switch to choose screen
         toggleChoose();
+        // Reset buttons
+        $('#nextBtn').addClass('invis');
+        $('#atkBtn').removeClass('temp-hide');
+        // Clear the attack box
+        $('#attackText').empty();
 
     });
+
+    // When the refresh button is clicked #refreshBtn
+    $('#refreshBtn').on('click', function() {
+        location.reload();
+    })
 
 
 });
