@@ -18,3 +18,9 @@ The player would be able to create a character of their own instead of using onl
 
 ### UI Improvements
 On hero select, the player would be able to click a character, which then highlights the character, provides some additional info, and prompts for confirm. Future clicks on other characters would switch the highlight. Opponent select would work the same. Also, instead of empty space where a selected character was, some sort of filler image or element.
+
+
+## Buglist!
+User can keep attacking after opponent is dead.
+
+Game over is broken, needs updating.

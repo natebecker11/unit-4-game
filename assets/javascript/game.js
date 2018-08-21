@@ -95,12 +95,14 @@ var roundWinner = function() {
     else if (pcHitPoints <= 0) {
         gameLoser();
     }
-    // Otherwise, bring up the choose opponent screen
+    // Otherwise, show the next opponent button, log congrats text to the textbox
      else {
-        alert(pcName + ' defeated ' + npcName + '! Choose your next opponent!')
-        toggleChoose();
+        $('#nextBtn').removeClass('invis');
+        $('#attackText').text(`${pcName} finished off ${npcName}!!! Another opponent awaits!`)
     }
 }
+
+
 
 // function gameWinner to declare a winner and reset 
 var gameWinner = function() {
@@ -188,6 +190,14 @@ $('document').ready(function() {
             if (npcHitPoints <= 0) roundWinner();
             // Else if PC is dead, game over
             else if (pcHitPoints <= 0) gameLoser();
+    });
+
+
+    // When the next button is clicked #nextBtn
+    $('#nextBtn').on('click', function() {
+        //ToggleChoose
+        toggleChoose();
+
     });
 
 
