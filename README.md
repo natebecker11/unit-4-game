@@ -10,18 +10,18 @@ Upon game start, available characters are displayed with their name, image, and 
 ## Stretch Features
 Once core features are complete, I hope to integrate the following features.
 
-### [] Special Powers
-- [] Each character has a single, one-time-use special ability that is unique to them, and only usable if the player selects them as a PC. These might be a one-time damage boost, a temporary shield from damage, a permanent reduction in an opponent's damage, etc.
-[] If this is included, it would be offered to the player as part of a special 'hard mode' of the game.
+### Special Powers
+- [ ] Each character has a single, one-time-use special ability that is unique to them, and only usable if the player selects them as a PC. These might be a one-time damage boost, a temporary shield from damage, a permanent reduction in an opponent's damage, etc.
+[ ] If this is included, it would be offered to the player as part of a special 'hard mode' of the game.
 
 ### Create a character
-- [] The player would be able to create a character of their own instead of using only the pre-made characters.
-- [] The player would make several choices, such as Race, Class, and Weapon that would in turn determine their statistics for HP, damage, special powers, etc.
+- [ ] The player would be able to create a character of their own instead of using only the pre-made characters.
+- [ ] The player would make several choices, such as Race, Class, and Weapon that would in turn determine their statistics for HP, damage, special powers, etc.
 
 ### UI Improvements
-- [] On hero select, the player would be able to click a character, which then highlights the character, provides some additional info, and prompts for confirm. Future clicks on other characters would switch the highlight.
-- [] Opponent select would work the same.
-- [] Also, instead of empty space where a selected character was, some sort of filler image or element.
+- [ ] On hero select, the player would be able to click a character, which then highlights the character, provides some additional info, and prompts for confirm. Future clicks on other characters would switch the highlight.
+- [ ] Opponent select would work the same.
+- [ ] Also, instead of empty space where a selected character was, some sort of filler image or element.
 - [x] Click buttons to move back to opponent select and to start a new game
 
 
