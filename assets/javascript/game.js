@@ -64,7 +64,7 @@ var toggleChoose = function() {
     // Remove current opponent from NPC Box
     $('#npcBox').empty();
     // Hide the fight screen
-    $('#marquee, #fightBox, #fightBox2').addClass('invis');
+    $('#marquee, #fightBox, #fightBox2').addClass('invis').css('opacity', 0);
     // Show the opponent select screen
     $('#heroChooser1, #heroChooser2').removeClass('invis');
     
@@ -74,7 +74,7 @@ var toggleChoose = function() {
 // function toggleFight to swap from choose screen to fight screen
 var toggleFight = function() {
     // Hide the opponent select screen
-    $('#heroChooser1, #heroChooser2').addClass('invis');
+    $('#heroChooser1, #heroChooser2').addClass('invis').css('opacity', 0);
     // Show the fight screen
     $('#marquee, #fightBox, #fightBox2').removeClass('invis');
 
@@ -106,6 +106,10 @@ var roundWinner = function() {
 
 
 
+
+
+
+
 // function gameWinner to declare a winner and reset 
 var gameWinner = function() {
     $('#attackText').text(`${pcName} has defeated all and reigns supreme!!`)
@@ -128,6 +132,19 @@ var logDamage = function(attack, counter) {
     $('#attackText').text(`${pcName} attacked for ${attack} damage. ${npcName} counter-attacked for ${counter} damage.`)
 } 
     
+// Experimental function for fading in/out the fight/choose boxes
+var testSwapper = function() {
+    $('#marquee, #fightBox').css('opacity', 0);
+    $('#heroChooser2, #heroChooser1').css('opacity', 0);
+    setTimeout(function() {
+        $('#heroChooser2, #heroChooser1').addClass('invis');
+        $('#marquee, #fightBox').removeClass('invis');
+    }, 500);
+    setTimeout(function() {
+        $('#marquee, #fightBox').css('opacity', 1);
+    }, 510);    
+}
+
 
 // Document ready function
 $('document').ready(function() {
