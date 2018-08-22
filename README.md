@@ -19,6 +19,9 @@ Once core features are complete, I hope to integrate the following features.
 - [ ] The player would make several choices, such as Race, Class, and Weapon that would in turn determine their statistics for HP, damage, special powers, etc.
 
 ### UI Improvements
+- [x] Fade in/out effect when switching between Fight and Character Select screens
+- [ ] Damage numbers pop up on character images when damage is taken
+- [ ] Generate and display random damage descriptors (e.g. 'Ardic stabs for 20 damage') in attack text
 - [ ] On hero select, the player would be able to click a character, which then highlights the character, provides some additional info, and prompts for confirm. Future clicks on other characters would switch the highlight.
 - [ ] Opponent select would work the same.
 - [ ] Also, instead of empty space where a selected character was, some sort of filler image or element.

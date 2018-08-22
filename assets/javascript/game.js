@@ -59,25 +59,26 @@ var heroes = [
 ]
 
 
-// function toggleChoose to swap from fight screen to choose screen
-var toggleChoose = function() {
-    // Remove current opponent from NPC Box
-    $('#npcBox').empty();
-    // Hide the fight screen
-    $('#marquee, #fightBox, #fightBox2').addClass('invis');
-    // Show the opponent select screen
-    $('#heroChooser1, #heroChooser2').removeClass('invis');
-}
+// function toggleChoose to swap from fight screen to choose screen DEPRECATED
+// var toggleChoose = function() {
+//     // Remove current opponent from NPC Box
+//     $('#npcBox').empty();
+//     // Hide the fight screen
+//     $('#marquee, #fightBox, #fightBox2').addClass('invis');
+//     // Show the opponent select screen
+//     $('#heroChooser1, #heroChooser2').removeClass('invis');
+    
+// }
 
 
-// function toggleFight to swap from choose screen to fight screen
-var toggleFight = function() {
-    // Hide the opponent select screen
-    $('#heroChooser1, #heroChooser2').addClass('invis');
-    // Show the fight screen
-    $('#marquee, #fightBox, #fightBox2').removeClass('invis');
+// function toggleFight to swap from choose screen to fight screen DEPRECATED
+// var toggleFight = function() {
+//     // Hide the opponent select screen
+//     $('#heroChooser1, #heroChooser2').addClass('invis');
+//     // Show the fight screen
+//     $('#marquee, #fightBox, #fightBox2').removeClass('invis');
 
-}
+// }
 
 
 // function roundWinner to move to the next round, or trigger the winner screen
@@ -98,10 +99,14 @@ var roundWinner = function() {
     // Otherwise, show the next opponent button, log congrats text to the textbox
      else {
         $('#nextBtn').removeClass('invis');
-        $('#atkBtn').addClass('temp-hide');
+        $('#atkBtn').addClass('temp-hide');        
         $('#attackText').text(`${pcName} finished off ${npcName}!!! Another opponent awaits!`)
     }
 }
+
+
+
+
 
 
 
@@ -127,6 +132,39 @@ var logDamage = function(attack, counter) {
     $('#attackText').text(`${pcName} attacked for ${attack} damage. ${npcName} counter-attacked for ${counter} damage.`)
 } 
     
+// Function to fade out of Choose and into Fight
+var toFight = function() {
+    // Ensure Fight screen is transparent
+    $('#marquee, #fightBox').css('opacity', 0);
+    // Fade Choose screen over .5s
+    $('#heroChooser2, #heroChooser1').css('opacity', 0);
+    // After .5s display Fight and hide Choose
+    setTimeout(function() {
+        $('#heroChooser2, #heroChooser1').addClass('invis');
+        $('#marquee, #fightBox').removeClass('invis');
+    }, 500);
+    // Then after another .04s fade in Fight
+    setTimeout(function() {
+        $('#marquee, #fightBox').css('opacity', 1);
+    }, 540);    
+}
+
+// Function to fade out of Fight screen and into Choose screen
+var toChoose = function() {
+    // Ensure Choose screen is transparent
+    $('#heroChooser2, #heroChooser1').css('opacity', 0);
+    // Fade Fight screen over .5s
+    $('#marquee, #fightBox').css('opacity', 0);
+    // After .5s display Choose and hide Fight
+    setTimeout(function() {
+        $('#marquee, #fightBox').addClass('invis');
+        $('#heroChooser2, #heroChooser1').removeClass('invis');
+    }, 500);
+    // Then after another .04s fade in Choose
+    setTimeout(function() {
+        $('#heroChooser2, #heroChooser1').css('opacity', 1);
+    }, 540); 
+}
 
 // Document ready function
 $('document').ready(function() {
@@ -160,6 +198,8 @@ $('document').ready(function() {
         }
         
         else {
+            // Empty the NPC box 
+            $('#npcBox').empty();
             // Grab the element of the hero
             var heroClicked = this;
             // Send that hero to the NPC box and hide it in the Hero box
@@ -176,7 +216,7 @@ $('document').ready(function() {
             // Change the sub-header to say 'Choose your next opponent!'
             $('#heroChooser1').text('Choose Your Next Opponent!');
             // Toggle the fight screen
-            toggleFight();
+            toFight();
         }
     })
             
@@ -202,12 +242,15 @@ $('document').ready(function() {
     // When the next button is clicked #nextBtn
     $('#nextBtn').on('click', function() {
         // Switch to choose screen
-        toggleChoose();
-        // Reset buttons
-        $('#nextBtn').addClass('invis');
-        $('#atkBtn').removeClass('temp-hide');
-        // Clear the attack box
-        $('#attackText').empty();
+        toChoose();
+        setTimeout(function() {
+            // Reset buttons
+            $('#nextBtn').addClass('invis');
+            $('#atkBtn').removeClass('temp-hide');
+            // Clear the attack box
+            $('#attackText').empty();
+        }, 600)
+        
 
     });
 
