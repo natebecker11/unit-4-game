@@ -40,8 +40,8 @@ body {
 /* Highlight on hover effect for heroes */
 .hero-pre:hover {
     opacity: 1;
-    border: 1px solid black;
-    border-style: round;
+    /* border: 1px solid black;
+    border-style: round; */
 }
 
 /* Hide an element but keep it taking space */
@@ -63,9 +63,9 @@ body {
     transition: opacity .5s ease-in-out;
     -moz-transition: opacity .5s ease-in-out;
     -webkit-transition: opacity .5s ease-in-out;
-    transition: border-color .5s ease-in-out;
+    /* transition: border-color .5s ease-in-out;
     -moz-transition: border-color .5s ease-in-out;
-    -webkit-transition: border-color .5s ease-in-out;
+    -webkit-transition: border-color .5s ease-in-out; */
 
 }
 
