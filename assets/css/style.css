@@ -47,7 +47,7 @@ body {
 /* Hide an element but keep it taking space */
 .temp-hide {
     visibility: hidden;
-    opacity: 0;
+    /* opacity: 0; */
 
 }
 
