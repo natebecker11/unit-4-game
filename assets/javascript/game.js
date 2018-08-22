@@ -67,6 +67,7 @@ var toggleChoose = function() {
     $('#marquee, #fightBox, #fightBox2').addClass('invis');
     // Show the opponent select screen
     $('#heroChooser1, #heroChooser2').removeClass('invis');
+    
 }
 
 
@@ -98,7 +99,7 @@ var roundWinner = function() {
     // Otherwise, show the next opponent button, log congrats text to the textbox
      else {
         $('#nextBtn').removeClass('invis');
-        $('#atkBtn').addClass('temp-hide');
+        $('#atkBtn').addClass('temp-hide');        
         $('#attackText').text(`${pcName} finished off ${npcName}!!! Another opponent awaits!`)
     }
 }

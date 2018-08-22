@@ -1,5 +1,7 @@
 body {
     font-family: 'Playfair Display', serif;
+    opacity: 1;
+    
 }
 
 
@@ -45,4 +47,26 @@ body {
 /* Hide an element but keep it taking space */
 .temp-hide {
     visibility: hidden;
+    opacity: 0;
+
 }
+
+/* Gradual fade in */
+.fader {
+    
+    transition: opacity 2s ease-in-out;
+    -moz-transition: opacity 2s ease-in-out;
+    -webkit-transition: opacity 2s ease-in-out;
+}
+
+.qk-fader {
+    transition: opacity .5s ease-in-out;
+    -moz-transition: opacity .5s ease-in-out;
+    -webkit-transition: opacity .5s ease-in-out;
+    transition: border-color .5s ease-in-out;
+    -moz-transition: border-color .5s ease-in-out;
+    -webkit-transition: border-color .5s ease-in-out;
+
+}
+
+
