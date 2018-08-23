@@ -29,5 +29,6 @@ Once core features are complete, I hope to integrate the following features.
 - [ ] Improve mobile layout, resize images
 - [x] Dynamically update HP for PC when returning to character select screen
 - [x] Fix bug where PC can be de-selected after each round
+- [ ] Check if .attr method works for selecting PC
 
 
