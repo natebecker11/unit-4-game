@@ -188,8 +188,7 @@ $('document').ready(function() {
     $('.hero-box').on('click', '.hero-card', function(){    
         // Check to see if that hero has already battled or is the locked PC (class .hasBattled/.lockedPC)
         if ($(this).hasClass('hasBattled' || 'lockedPC') || $(this).parent().hasClass('lockedPC')) {
-            // Return
-            
+            // Return            
             return;
         }          
         // Check to see if that hero is the currently selected opponent 
@@ -212,6 +211,7 @@ $('document').ready(function() {
 
         // Check to see if this is the selected PC and the opponent is not selected
         else if ($(this).hasClass('selectedPC')) {
+            if (isPCSelected) return;
             // Remove this from being the selected PC
             $(this).removeClass('selectedPC');
             // Toggle the selected PC flag 

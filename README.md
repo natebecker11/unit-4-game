@@ -28,6 +28,6 @@ Once core features are complete, I hope to integrate the following features.
 - [x] Click buttons to move back to opponent select and to start a new game
 - [ ] Improve mobile layout, resize images
 - [x] Dynamically update HP for PC when returning to character select screen
-- [ ] Fix bug where PC can be de-selected after each round
+- [x] Fix bug where PC can be de-selected after each round
 
 
