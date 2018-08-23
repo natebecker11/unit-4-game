@@ -34,6 +34,7 @@ var heroes = [
         atk: 8,
         counter: 12,
         hardCtr: 34
+        
 
     },
     {
@@ -65,6 +66,27 @@ var heroes = [
     }
 ]
 
+
+// Array of combat actions
+var combatActions = [
+    ' attacked ',
+    ' sucker-punched ',
+    ' bit and clawed ',
+    ' smashed and bashed ',
+    ' threw a piece of furniture ',
+    ' swept the leg ',
+    ' landed a fierce blow ',
+    ' stabbed with their dagger ',
+    ' shoulder charged ',
+    ' body slammed '
+]
+
+
+// function to pick a random combat action
+var randomAction = function() {
+    var actionNumber = Math.floor(Math.random() * combatActions.length);
+    return combatActions[actionNumber];
+}
 // function roundWinner to move to the next round, or trigger the winner screen
 var roundWinner = function() {
     // Clear the damage text display
@@ -107,7 +129,7 @@ var gameLoser = function() {
 
 // Function to log the damage dealt each attack
 var logDamage = function(attack, counter) {
-    $('#attackText').text(`${pcName} attacked for ${attack} damage. ${npcName} counter-attacked for ${counter} damage.`)
+    $('#attackText').text(`${pcName} ${randomAction()} for ${attack} damage. ${npcName} ${randomAction()} for ${counter} damage.`)
 } 
     
 // Function to fade out of Choose and into Fight
