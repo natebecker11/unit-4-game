@@ -152,8 +152,9 @@ $('document').ready(function() {
     // When a card from inside the hero box is clicked, select that card
     $('.hero-box').on('click', '.hero-card', function(){    
         // Check to see if that hero has already battled or is the locked PC (class .hasBattled/.lockedPC)
-        if ($(this).hasClass('hasBattled' || 'lockedPC')) {
+        if ($(this).hasClass('hasBattled' || 'lockedPC') || $(this).parent().hasClass('lockedPC')) {
             // Return
+            
             return;
         }          
         // Check to see if that hero is the currently selected opponent 
@@ -164,6 +165,8 @@ $('document').ready(function() {
             $('#heroChooser1').text('Choose Your Opponent!').removeClass('confirmer');            
             // Toggle the selected Opponent flag to false
             isOpponentSelected = false;
+            // Hide the fight button
+            $('#fightBtn').addClass('temp-hide');
             // Allow for PC to be de-selected
             $('.lockedPC').removeClass('lockedPC');
             
@@ -216,7 +219,7 @@ $('document').ready(function() {
             heroSent = true;
             // The PC.. 
             $(heroClicked)
-                .removeClass('lockedPC')                      
+                                      
             // Clone them
                 .clone()
             // Attach to pcBox
@@ -280,6 +283,10 @@ $('document').ready(function() {
     $('#nextBtn').on('click', function() {
         // Switch to choose screen
         toChoose();
+        // Change the Chooser header to "Choose Opponent"
+        $('#heroChooser1').text('Choose Your Opponent!')
+        // Display the current PC HP on the Chooser screen
+        $('.hero-box').find('.lockedPC').find('.hp-box').addClass('text-danger font-weight-bold').removeClass('text-muted').text(pcHitPoints + ' HP');
         setTimeout(function() {
             // Reset buttons
             $('#nextBtn').addClass('invis');

@@ -27,6 +27,7 @@ Once core features are complete, I hope to integrate the following features.
 - [x] Also, instead of empty space where a selected character was, some sort of filler image or element.
 - [x] Click buttons to move back to opponent select and to start a new game
 - [ ] Improve mobile layout, resize images
-- [ ] Dynamically update HP for PC when returning to character select screen
+- [x] Dynamically update HP for PC when returning to character select screen
+- [ ] Fix bug where PC can be de-selected after each round
 
 
