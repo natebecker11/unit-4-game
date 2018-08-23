@@ -279,6 +279,7 @@ $('document').ready(function() {
             .appendTo('#npcBox');
         // Add has battled
         $(npcClicked).addClass('hasBattled').removeClass('selectedOpponent');        
+        
         // Iterate through the heroes array looking for the one with the matching ID
         var npcObj = heroes.find(function(element) {
             return element.id == npcClicked.attr('id');
