@@ -5,7 +5,9 @@ body {
 }
 
 
-
+.hero-card {
+    position: relative;
+}
 
 
 
@@ -94,6 +96,13 @@ body {
     -webkit-transition: opacity .5s ease-in-out;
 }
 
+
+.slow-fader {
+    transition: opacity 1s ease-in-out .25s;
+    -moz-transition: opacity 1s ease-in-out .25s;
+    -webkit-transition: opacity 1s ease-in-out .25s;
+
+}
 .qk-fader {
     transition: opacity .5s ease-in-out;
     -moz-transition: opacity .5s ease-in-out;

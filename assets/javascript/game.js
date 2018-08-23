@@ -127,9 +127,22 @@ var gameLoser = function() {
     $('#vsBox').text('LOSER!!!');
 }
 
-// Function to log the damage dealt each attack
+// Function to log the damage dealt each attack and display damage on hero images
 var logDamage = function(attack, counter) {
     $('#attackText').text(`${pcName} ${randomAction()} for ${attack} damage. ${npcName} ${randomAction()} for ${counter} damage.`)
+    var dmgDone = $('<p>');
+    $(dmgDone).text('- ' + counter).addClass('font-weight-bold slow-fader');
+    setTimeout(function(){
+        $(dmgDone).css({'opacity': 0, 'position': 'absolute', 'top': '50px', 'left': '60px', 'font-size': '50px', 'color': '#8b0000'});
+    })
+    $('#pcBox').find('.hero-card').append(dmgDone);
+    
+    var dmgDone2 = $('<p>');
+    $(dmgDone2).text('- ' + attack).addClass('font-weight-bold slow-fader');
+    setTimeout(function(){
+        $(dmgDone2).css({'opacity': 0, 'position': 'absolute', 'top': '50px', 'left': '60px', 'font-size': '50px', 'color': '#8b0000'});
+    })
+    $('#npcBox').find('.hero-card').append(dmgDone2);
 } 
     
 // Function to fade out of Choose and into Fight
