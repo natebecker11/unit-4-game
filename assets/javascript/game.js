@@ -13,6 +13,13 @@
     var heroChosen = false;
     // Counter for rounds won
     var roundsWon = 0;
+    // Flag for whether the hero/opponent is selected
+    var isPCSelected = false;
+    var isOpponentSelected = false;
+    // Some fun testy global vars
+    var heroClicked = null;
+    var heroSent = false;
+    
     
     
    
@@ -26,16 +33,16 @@ var heroes = [
         hp: 160,
         atk: 8,
         counter: 12,
-        hardCtr: 30
+        hardCtr: 34
 
     },
     {
         name: 'Nim of Clan Turenn',
         id: 'nim',
         hp: 100,
-        atk: 13,
-        counter: 19,
-        hardCtr: 42
+        atk: 20,
+        counter: 25,
+        hardCtr: 45
 
     },
     {
@@ -43,8 +50,8 @@ var heroes = [
         id: 'ardic',
         hp: 140,
         atk: 10,
-        counter: 15,
-        hardCtr: 35
+        counter: 14,
+        hardCtr: 37
 
     },
     {
@@ -52,34 +59,11 @@ var heroes = [
         id: 'eo',
         hp: 120,
         atk: 11,
-        counter: 17,
+        counter: 16,
         hardCtr: 38
 
     }
 ]
-
-
-// function toggleChoose to swap from fight screen to choose screen DEPRECATED
-// var toggleChoose = function() {
-//     // Remove current opponent from NPC Box
-//     $('#npcBox').empty();
-//     // Hide the fight screen
-//     $('#marquee, #fightBox, #fightBox2').addClass('invis');
-//     // Show the opponent select screen
-//     $('#heroChooser1, #heroChooser2').removeClass('invis');
-    
-// }
-
-
-// function toggleFight to swap from choose screen to fight screen DEPRECATED
-// var toggleFight = function() {
-//     // Hide the opponent select screen
-//     $('#heroChooser1, #heroChooser2').addClass('invis');
-//     // Show the fight screen
-//     $('#marquee, #fightBox, #fightBox2').removeClass('invis');
-
-// }
-
 
 // function roundWinner to move to the next round, or trigger the winner screen
 var roundWinner = function() {
@@ -103,12 +87,6 @@ var roundWinner = function() {
         $('#attackText').text(`${pcName} finished off ${npcName}!!! Another opponent awaits!`)
     }
 }
-
-
-
-
-
-
 
 // function gameWinner to declare a winner and reset 
 var gameWinner = function() {
@@ -137,11 +115,12 @@ var toFight = function() {
     // Ensure Fight screen is transparent
     $('#marquee, #fightBox').css('opacity', 0);
     // Fade Choose screen over .5s
-    $('#heroChooser2, #heroChooser1').css('opacity', 0);
+    $('#heroChooser2, #heroChooser1, #heroChooser3').css('opacity', 0);
     // After .5s display Fight and hide Choose
     setTimeout(function() {
-        $('#heroChooser2, #heroChooser1').addClass('invis');
+        $('#heroChooser2, #heroChooser1, #heroChooser3').addClass('invis');
         $('#marquee, #fightBox').removeClass('invis');
+        
     }, 500);
     // Then after another .04s fade in Fight
     setTimeout(function() {
@@ -152,17 +131,17 @@ var toFight = function() {
 // Function to fade out of Fight screen and into Choose screen
 var toChoose = function() {
     // Ensure Choose screen is transparent
-    $('#heroChooser2, #heroChooser1').css('opacity', 0);
+    $('#heroChooser2, #heroChooser1, #heroChooser3').css('opacity', 0);
     // Fade Fight screen over .5s
     $('#marquee, #fightBox').css('opacity', 0);
     // After .5s display Choose and hide Fight
     setTimeout(function() {
         $('#marquee, #fightBox').addClass('invis');
-        $('#heroChooser2, #heroChooser1').removeClass('invis');
+        $('#heroChooser2, #heroChooser1, #heroChooser3').removeClass('invis');
     }, 500);
     // Then after another .04s fade in Choose
     setTimeout(function() {
-        $('#heroChooser2, #heroChooser1').css('opacity', 1);
+        $('#heroChooser2, #heroChooser1, #heroChooser3').css('opacity', 1);
     }, 540); 
 }
 
@@ -171,54 +150,112 @@ $('document').ready(function() {
 
 
     // When a card from inside the hero box is clicked, select that card
-    $('.hero-box').on('click', '.hero-card', function(){
-        //Check to see if a hero has already been chosen, and if not
-        if (heroChosen === false) {
-            // Grab the element of the hero
-            var heroClicked = this;
-            // Send that hero to the PC Box and remove it from the Hero box
+    $('.hero-box').on('click', '.hero-card', function(){    
+        // Check to see if that hero has already battled or is the locked PC (class .hasBattled/.lockedPC)
+        if ($(this).hasClass('hasBattled' || 'lockedPC')) {
+            // Return
+            return;
+        }          
+        // Check to see if that hero is the currently selected opponent 
+        else if ($(this).hasClass('selectedOpponent')) {            
+            // De-select that hero
+            $(this).removeClass('selectedOpponent');
+            // Change Chooser Header
+            $('#heroChooser1').text('Choose Your Opponent!').removeClass('confirmer');            
+            // Toggle the selected Opponent flag to false
+            isOpponentSelected = false;
+            // Allow for PC to be de-selected
+            $('.lockedPC').removeClass('lockedPC');
             
-            $(this).clone().removeClass('hero-pre').appendTo('#pcBox');
-            $(this).addClass('invis');
+        }
+        // Check to see if opponent is selected already when clicking another hero
+        else if (isOpponentSelected) return;
 
-            // Iterate through the heroes array looking for the one with a matching id
+
+        // Check to see if this is the selected PC and the opponent is not selected
+        else if ($(this).hasClass('selectedPC')) {
+            // Remove this from being the selected PC
+            $(this).removeClass('selectedPC');
+            // Toggle the selected PC flag 
+            isPCSelected = false;
+            // Change chooser header
+            $('#heroChooser1').text('Choose Your Hero!!!')            
+        }
+        // Check to see if the PC has been selected, if yes
+        else if (isPCSelected) {
+            // Make this card the currently selected opponent
+            $(this).addClass('selectedOpponent');
+            // Toggle the selected Opponent flag to true
+            isOpponentSelected = true;
+            // Prevent the PC to be de-selected
+            $('.selectedPC').addClass('lockedPC');
+            // Change the Chooser Header to 'Click here to begin!'
+            $('#heroChooser1').text('Get Ready To Rumble!!!')
+            // Show the Fight Button
+            $('#fightBtn').removeClass('temp-hide');
+            // Change the heroClicked var
+            heroClicked = $('.lockedPC')
+        }
+        // Else make this the selected PC
+        else {
+            // Toggle the selected PC flag to true
+            isPCSelected = true;
+            // Make this the selected PC
+            $(this).addClass('selectedPC');
+            // Change chooser header
+            $('#heroChooser1').text('Choose Your Opponent!');
+
+        }
+
+    });
+
+    // When the confirmer button is clicked 
+    $('#fightBtn').on('click', function() {
+        $('#fightBtn').addClass('temp-hide');
+        if (!heroSent) {
+            heroSent = true;
+            // The PC.. 
+            $(heroClicked)
+                .removeClass('lockedPC')                      
+            // Clone them
+                .clone()
+            // Attach to pcBox
+                .appendTo('#pcBox');
+            // Iterate through the heroes array looking for the one with the matching ID
             var heroObj = heroes.find(function(element) {
-                return element.id == heroClicked.id;
-            })
-            // Store the Attack, HP, and Name of the object
-            pcHitPoints = heroObj.hp; 
+                return element.id == heroClicked.attr('id');
+            });
+            console.log(heroObj);
+            // Store the Attack, HP, Name
+            pcHitPoints = heroObj.hp;
             pcAttack = heroObj.atk;
             pcAttackMod = heroObj.atk;
             pcName = heroObj.name;
-            // Change the sub-header
-            $('#heroChooser1').text('Choose Your Opponent!');
-            // set heroChosen = true so the next click is picking an opponent
-            heroChosen = true;
-            
         }
+
+        // Grab the element of the  selected NPC
+        var npcClicked = $('.selectedOpponent');
+        // Clone them, add to npc box
+        $(npcClicked)
+            .clone()
+            .appendTo('#npcBox');
+        // Add has battled
+        $(npcClicked).addClass('hasBattled').removeClass('selectedOpponent');        
+        // Iterate through the heroes array looking for the one with the matching ID
+        var npcObj = heroes.find(function(element) {
+            return element.id == npcClicked.attr('id');
+        });
+        // Store the counterAttack, HP, Name
+            npcHitPoints = npcObj.hp;
+            npcCounter = npcObj.counter;
+            npcName = npcObj.name;
         
-        else {
-            // Empty the NPC box 
-            $('#npcBox').empty();
-            // Grab the element of the hero
-            var heroClicked = this;
-            // Send that hero to the NPC box and hide it in the Hero box
-            $(this).clone().removeClass('hero-pre').appendTo('#npcBox');
-            $(this).addClass('invis');
-            // Iterate through the heroes array looking for the matching ID
-            var heroObj = heroes.find(function(element) {
-                return element.id == heroClicked.id;
-            })
-            // Store the Counter-Atk, HP, and Name of the object
-            npcHitPoints = heroObj.hp;
-            npcCounter = heroObj.counter;
-            npcName = heroObj.name;
-            // Change the sub-header to say 'Choose your next opponent!'
-            $('#heroChooser1').text('Choose Your Next Opponent!');
-            // Toggle the fight screen
-            toFight();
-        }
-    })
+
+        // Start the fight!
+        isOpponentSelected = false;
+        toFight();
+    });
+
             
     // When the attack button #atkBtn is clicked
     $('#atkBtn').on('click', function() {
@@ -249,6 +286,9 @@ $('document').ready(function() {
             $('#atkBtn').removeClass('temp-hide');
             // Clear the attack box
             $('#attackText').empty();
+            // Clear the npcBox
+            $('#npcBox').empty();
+             
         }, 600)
         
 

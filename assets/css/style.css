@@ -44,6 +44,41 @@ body {
     border-style: round; */
 }
 
+/* Class for defeated opponents */
+.hasBattled, .hasBattled:hover {
+    opacity: .1;
+}
+
+/* Class for a locked-in PC */
+.lockedPC {
+    opacity: 1;
+}
+
+/* Class for selected PC */
+.selectedPC {
+    opacity: 1;
+    border: 1px solid blue;
+}
+
+/* Class for a currently selected opponent */
+.selectedOpponent {
+    opacity: 1;
+    border: 1px solid red;
+}
+
+/* Class for the Click to Fight text */
+.confirmer {
+    animation: glow .35s infinite alternate;
+    
+}
+
+@keyframes glow {
+    to {
+        text-shadow: 0 0 10px red;
+    }
+}
+
+
 /* Hide an element but keep it taking space */
 .temp-hide {
     visibility: hidden;
